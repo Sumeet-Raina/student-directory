@@ -23,11 +23,10 @@ def print_header
 end
 
 def print(students)
-  n_matches = 0
-  students.each_with_index do |student|
-    if student[:name].start_with?("a")
-    puts "#{n_matches += 1} #{student[:name]} (#{student[:cohort]} cohort)"
-  end
+  students.each do |student|
+    if student[:name].size < 12
+    puts "#{student[:name]}  (#{student[:cohort]} cohort)"
+    end
   end
 end
 
