@@ -2,29 +2,23 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   students = []
-  while name = gets.chomp.to_sym do
+  while name = gets.chomp.capitalize do
     break if name.empty?
     puts "What is your student cohort"
-    cohort = gets.chomp.to_sym
-    puts "What is your student height"
-    height = gets.chomp.to_sym
-    puts "What is your student hobbie"
-    hobbies = gets.chomp.to_sym
+    cohort = gets.chomp.capitalize
     puts "Where is your student from"
-    country_of_birth = gets.chomp.to_sym
-    if cohort.empty? || height.empty? || hobbies.empty? || country_of_birth.empty?
+    country_of_birth = gets.chomp.capitalize
+    if cohort.empty? || country_of_birth.empty?
       cohort = "Not given"
-      height = "(Not given)"
-      hobbies = "(Not given)"
       country_of_birth = "(Not given)"
     end
-    students << {name: name, cohort: cohort, hobbies: hobbies, height: height, country_of_birth: country_of_birth}
+    students << {name: name, cohort: cohort, country_of_birth: country_of_birth}
     if students.count > 1
       puts "Now we have #{students.count} students"
     else
       puts "Now we have #{students.count} student"
     end
-
+    puts "Enter another name"
   end
   students
 end
@@ -35,10 +29,24 @@ puts "-------------"
 end
 
 def print(students)
-  students.each do |student|
-     puts " #{student[:name]} (#{student[:cohort]} cohort), Country of birth: #{student[:country_of_birth]}  Height: #{student[:height]} cm Hobbies: #{student[:hobbies]}"
+  students.map do |student|
+    student.map {|k,v| [k, v.to_sym]}
+  puts " #{student[:name]} (#{student[:cohort]} cohort), #{student[:country_of_birth]}"
   end
 end
+
+def cohort(students)
+  puts "What cohort would you like to print"
+  cohort_input = ""
+  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  while cohort_input != months
+    cohort_input = gets.chomp.capitalize
+    students.select{ |s| s[:cohort] == cohort_input }.each {|student| p student[:name] }
+    break if cohort_input == "End"
+    puts "Please, introduce a month" if cohort_input != months
+  end
+end
+
 
 def print_footer(students)
   if students.count > 1
@@ -51,4 +59,5 @@ end
 students = input_students
 print_header
 print(students)
+cohort(students)
 print_footer(students)
