@@ -15,7 +15,7 @@ def input_students
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: :november, country: country, hobbies: hobbies, height: height }
+    students << {name: name, cohort: "November", country: country, hobbies: hobbies, height: height }
     puts "Now we have #{students.count} students"
     # get another name from the user
     puts "Enter name"
@@ -35,14 +35,14 @@ def print_header
   puts "The students of Villains Academy"
   puts "-------------"
 end
-
 def print(students)
   i = 0
-  while !(student = students[i]).nil? do
-     puts " #{student[:name]} (#{student[:cohort]} cohort), country: #{student[:country]} hobbies: #{student[:hobbies]} height: #{student[:height]} "
-     i += 1
-  end
+while !(student = students[i]).nil? do
+   puts " #{student[:name].center(6)} #{student[:cohort].center(6)} cohort  country: #{student[:country].center(6)} hobbies: #{student[:hobbies].center(6)} height: #{student[:height].center(6)} "
+   i += 1
 end
+  end
+
 
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
