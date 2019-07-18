@@ -50,9 +50,9 @@ end
 
 def print_footer(students)
   if students.count > 1
-    puts "Overall, we have #{students.count} great students"
-  else
     puts "Overall, we have #{students.count} great student"
+  else
+    puts "Overall, we have #{students.count} great students"
   end
 end
 
