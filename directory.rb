@@ -2,12 +2,12 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   students = []
-  while name = gets.chomp.capitalize do
+  while name = gets.strip.capitalize do
     break if name.empty?
     puts "What is your student cohort"
-    cohort = gets.chomp.capitalize
+    cohort = gets.strip.capitalize
     puts "Where is your student from"
-    country_of_birth = gets.chomp.capitalize
+    country_of_birth = gets.strip.capitalize
     if cohort.empty? || country_of_birth.empty?
       cohort = "Not given"
       country_of_birth = "(Not given)"
@@ -40,7 +40,7 @@ def cohort(students)
   cohort_input = ""
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   while cohort_input != months
-    cohort_input = gets.chomp.capitalize
+    cohort_input = gets.strip.capitalize
     students.select{ |s| s[:cohort] == cohort_input }.each {|student| p student[:name] }
     break if cohort_input == "End"
     puts "Please, introduce a month" if cohort_input != months
